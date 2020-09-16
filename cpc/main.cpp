@@ -18,8 +18,8 @@ int main(int argc, char * argv[])
 {
     // 读取图/拓扑信息
     label n_edge, n_vertex;
-    label* row = readFile("./data/row4.txt", &n_edge);
-    label* col = readFile("./data/col4.txt", &n_edge);
+    label* row = readFile("./data/row3.txt", &n_edge);
+    label* col = readFile("./data/col3.txt", &n_edge);
 
     n_vertex = getVertexNum(row, col, n_edge);
     printf("n_edge: %d, n_vertex: %d\n", n_edge, n_vertex);

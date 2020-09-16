@@ -11,7 +11,7 @@
 
 
 
-#define EPS 1e-14
+#define EPS 1e-13
 
 typedef int label;
 typedef double scalar;
@@ -40,14 +40,14 @@ typedef double scalar;
             { \
                 if(std::fabs(array2[i])>EPS) \
                 { \
-                    printf("Error on index[%d], %.8f, %.8f\n", \
+                    printf("Error on index[%d], %.15f, %.15f\n", \
                                 i, array1[i], array2[i]); \
                     std::exit(-1); \
                 } \
             } \
             else if(std::fabs((array1[i]-array2[i])/array1[i])>EPS) \
             { \
-                printf("Error on index[%d], %.8f, %.8f\n", \
+                printf("Error on index[%d], %.15f, %.15f\n", \
                             i, array1[i], array2[i]); \
                 std::exit(-1); \
             } \

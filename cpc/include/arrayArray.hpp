@@ -88,6 +88,7 @@ public:
         for (int i = 0; i < this->num*this->dim; ++i)
         {
             this->data[i] = (scalar)(rand()%100-50)/100;
+            if(abs(this->data[i])<EPS) this->data[i]=1.0f; //avoid FPE error
         }
         basicEle = new BasicElement[this->num];
         for (int i = 0; i < this->num; ++i)

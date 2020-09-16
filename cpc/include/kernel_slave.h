@@ -7,16 +7,16 @@
 #include <stdio.h>
 
 #define THREAD_SIZE 64
-#define MAX_STORAGE_SIZE 48 * 1024  //50kb
-#define EDGE_BUFFER_SIZE 10*1024 //10kb for edge buffer
-#define INNER_SIZE 48
+#define MAX_STORAGE_SIZE 50 * 1024
+#define INNER_SIZE 16
+#define EXTERNAL_SIZE 1024 //1kb
 #define REST_INNER_SIZE 8
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-    typedef scalar** EdgeBuffer;
+
     typedef struct
     {
         int offset;
@@ -40,10 +40,7 @@ extern "C"
         int maxRowPerCycle;
         int **localEdge;
         int *localSize;
-        int maxEdgeBufSize;
-        EdgeBuffer* edgeBuf;
-        int** rows;
-        int** cols;
+
         FunPtr funPtr;
 
     } SlavePara;

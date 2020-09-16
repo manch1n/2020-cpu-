@@ -25,12 +25,9 @@ extern "C"
         return time;
     }
 
-    static FunPtr _funs[4] = {integration, spMV, compVisflux, calcLudsFcc};
-    static int _funIndex = 0;
+    static FunPtr _funs[4]={integration,spMV,compVisflux,calcLudsFcc};
+    static int _funIndex=0;
 
-    static int threads_num[25] = {16, 32, 32, 16, 16, 16, 16, 24, 24, 8, 8, 16, 16, 32, 24, 16, 16, 16, 16, -1, 16, 20, 24, 32, 12};
-    static int examples = -1;
-    static int preNum = -1;
 #ifdef __cplusplus
 }
 #endif
@@ -82,53 +79,25 @@ int getUnitSize(const DataSet *ds) //byte
     return byteSize;
 }
 
-static map<FunPtr, FunPtr> _slaveToMain;
-static int all = 0;
-static int firstFlag = 0;
-static int per = 0;
+static map<FunPtr,FunPtr> _slaveToMain;
 
 void slave_computation(DataSet *dataSet_edge, DataSet *dataSet_vertex,
                        label *row, label *col, FunPtr funPtr)
 {
-    if (_slaveToMain.find(funPtr) == _slaveToMain.end())
+    if(_slaveToMain.find(funPtr)==_slaveToMain.end())
     {
-        _slaveToMain[funPtr] = _funs[_funIndex];
-        _funIndex = (_funIndex + 1) % 4;
+        _slaveToMain[funPtr]=_funs[_funIndex];
+        _funIndex=(_funIndex+1)%4;
     }
     unsigned long starttime, endtime, alltime = 0;
+    const int blockNum = THREAD_SIZE * 2;
+    Index indexTable[blockNum];
     //calculate index table
     int offset = 0;
     int end;
     int nedge = getArraySize(dataSet_edge);
     int nvertex = getArraySize(dataSet_vertex);
-    if(firstFlag==2)
-    {
-        if(all==per) examples++;
-        all=0;
-    }
-    if(firstFlag==1&&preNum!=nvertex)
-    {   
-        firstFlag=2;
-        per=all;
-        examples++;
-        all=0;
-    }
-    if(firstFlag==0)
-    {
-        examples++;
-        firstFlag=1;
-        preNum=nvertex;
-    }
-    all++;
-    if (threads_num[examples] == -1)
-    {
-        _slaveToMain[funPtr](dataSet_edge, dataSet_vertex, row, col);
-        return;
-    }
-    const int blockNum = threads_num[examples] * 2;
     int aveEdge = nedge / blockNum;
-
-    Index indexTable[blockNum];
     for (int i = 0; i < blockNum - 1; ++i)
     {
         indexTable[i].offset = offset;
@@ -203,7 +172,7 @@ void slave_computation(DataSet *dataSet_edge, DataSet *dataSet_vertex,
         ebuf,
         rows,
         cols,
-        funPtr, threads_num[examples]};
+        funPtr};
 
     __real_athread_spawn((void *)slave_computation_kernel, &para);
     athread_join();

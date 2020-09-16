@@ -164,6 +164,11 @@ void computation_kernel(SlavePara *para)
     unsigned long start, end, alltime = 0;
 
     my_id = athread_get_id(-1);
+    if (my_id >= THREAD_SIZE)
+    {
+        athread_syn(ARRAY_SCOPE, 0xffff);
+        return;
+    }
 
     scalar *rEdgeFloatArrays[20];
     scalar *rVertexFloatArrays[20];
@@ -181,12 +186,6 @@ void computation_kernel(SlavePara *para)
 
     SlavePara sp;
     get_wait_reply(para, &sp, sizeof(SlavePara));
-    int thread_size=sp.threadNum;
-    if (my_id >= thread_size)
-    {
-        athread_syn(ARRAY_SCOPE, 0xffff);
-        return;
-    }
     label *row = ldm_malloc(sizeof(label) * sp.maxRowPerCycle);
     label *col = ldm_malloc(sizeof(label) * sp.maxRowPerCycle);
 

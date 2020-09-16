@@ -6,7 +6,7 @@
 #include "callback.h"
 #include <stdio.h>
 
-#define THREAD_SIZE 32
+#define THREAD_SIZE 12
 #define MAX_STORAGE_SIZE 48 * 1024  //50kb
 #define EDGE_BUFFER_SIZE 10*1024 //10kb for edge buffer
 #define INNER_SIZE 48
@@ -45,7 +45,6 @@ extern "C"
         int** rows;
         int** cols;
         FunPtr funPtr;
-        int threadNum;
 
     } SlavePara;
 
