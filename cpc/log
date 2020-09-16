@@ -1,0 +1,70 @@
+Job <51177537> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+n_edge: 19800, n_vertex: 10000
+hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE hello world, I am SPE 0123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+check result...
+Error on index[0], -0.13000000, 0.31920000
+[51177537 ## Wed Sep  2 17:15:23 2020] warning: node [13]: user's mpe task: tid= 0, pid= 4224, exit_code= 255
